@@ -14,4 +14,4 @@ find_package(GeckoSDK REQUIRED)
 add_executable(hello_world main.c)
 
 # Link the library to the target
-target_link_libraries(hello_world PRIVATE gecko_sdk_emlib)
+target_link_libraries(hello_world PRIVATE GeckoSDK::emlib)

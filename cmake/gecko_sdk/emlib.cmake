@@ -1,6 +1,7 @@
 # CMake target for Gecko EMLIB
 if(NOT TARGET gecko_sdk_emlib)
   add_library(gecko_sdk_emlib OBJECT EXCLUDE_FROM_ALL)
+  add_library(GeckoSDK::emlib ALIAS gecko_sdk_emlib)
 
   # Common include paths
   target_include_directories(

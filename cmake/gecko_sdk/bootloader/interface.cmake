@@ -1,6 +1,7 @@
 # CMake target for Gecko Bootloader interface
 if(NOT TARGET gecko_sdk_bootloader_interface)
   add_library(gecko_sdk_bootloader_interface OBJECT EXCLUDE_FROM_ALL)
+  add_library(GeckoSDK::bootloader::interface ALIAS gecko_sdk_bootloader_interface)
 
   # Include paths
   target_include_directories(

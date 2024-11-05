@@ -20,6 +20,7 @@ if(NOT TARGET gecko_sdk_rail_lib)
 
   # Define the target
   add_library(gecko_sdk_rail_lib STATIC IMPORTED)
+  add_library(GeckoSDK::rail_lib ALIAS gecko_sdk_rail_lib)
 
   # Include paths
   target_include_directories(
