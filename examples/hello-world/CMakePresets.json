@@ -1,0 +1,23 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "name": "EFR32BG22",
+      "toolchainFile": "${sourceDir}/../../cmake/toolchains/arm-cortex-m33.cmake",
+      "cacheVariables": {
+        "GECKO_DEVICE": "EFR32BG22C224F512GM32",
+        "GECKO_CPU_FAMILY": "EFR32BG22",
+        "GECKO_BOARD_CONFIG": "${sourceDir}/common/bsp/RF-BM-BG22C3",
+        "LINKER_SCRIPT": "${sourceDir}/efr32xg22.ld"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "EFR32BG22",
+      "configurePreset": "EFR32BG22"
+    }
+  ]
+}
