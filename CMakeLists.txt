@@ -1,4 +1,4 @@
-# CMake "find module" for the Silicon Labs Gecko SDK
+# CMake package for the Silicon Labs Gecko SDK
 #
 # This module will search for the Gecko SDK at the specified path and include
 # the necessary components for building applications with the SDK.
@@ -11,11 +11,6 @@
 # Optional variables:
 # - GECKO_BOARD: The development board name (e.g. "BRD4161A")
 # - GECKO_BOARD_CONFIG: Path to custom board configuration files
-#
-# Usage:
-#   find_package(GeckoSDK REQUIRED)
-
-# include(FindPackageHandleStandardArgs)
 
 # Make sure GECKO_SDK_PATH is defined
 if(NOT DEFINED GECKO_SDK_PATH)
@@ -32,12 +27,8 @@ if (NOT gecko_sdk_version MATCHES "version=([0-9]+)\\.([0-9]+)\\.([0-9]+)")
   message(FATAL_ERROR "[GeckoSDK] Could not find Silicon Labs Gecko SDK at ${GECKO_SDK_PATH}")
 endif()
 
-# Extract the version from the .properties file, check if it matches the version requirement
-# set(PACKAGE_VERSION "${CMAKE_MATCH_1}.${CMAKE_MATCH_2}.${CMAKE_MATCH_3}")
-# find_package_check_version("${PACKAGE_VERSION}" version_check HANDLE_VERSION_RANGE RESULT_MESSAGE_VARIABLE reason)
-# if (NOT version_check)
-#   message(FATAL_ERROR "[GeckoSDK] ${reason}")
-# endif()
+# Extract the version from the .properties file
+set(PACKAGE_VERSION "${CMAKE_MATCH_1}.${CMAKE_MATCH_2}.${CMAKE_MATCH_3}")
 
 # Print the SDK version
 message(STATUS "[GeckoSDK] Found Silicon Labs Gecko SDK v${PACKAGE_VERSION}")
