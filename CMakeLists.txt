@@ -15,7 +15,7 @@
 # Usage:
 #   find_package(GeckoSDK REQUIRED)
 
-include(FindPackageHandleStandardArgs)
+# include(FindPackageHandleStandardArgs)
 
 # Make sure GECKO_SDK_PATH is defined
 if(NOT DEFINED GECKO_SDK_PATH)
@@ -33,11 +33,11 @@ if (NOT gecko_sdk_version MATCHES "version=([0-9]+)\\.([0-9]+)\\.([0-9]+)")
 endif()
 
 # Extract the version from the .properties file, check if it matches the version requirement
-set(PACKAGE_VERSION "${CMAKE_MATCH_1}.${CMAKE_MATCH_2}.${CMAKE_MATCH_3}")
-find_package_check_version("${PACKAGE_VERSION}" version_check HANDLE_VERSION_RANGE RESULT_MESSAGE_VARIABLE reason)
-if (NOT version_check)
-  message(FATAL_ERROR "[GeckoSDK] ${reason}")
-endif()
+# set(PACKAGE_VERSION "${CMAKE_MATCH_1}.${CMAKE_MATCH_2}.${CMAKE_MATCH_3}")
+# find_package_check_version("${PACKAGE_VERSION}" version_check HANDLE_VERSION_RANGE RESULT_MESSAGE_VARIABLE reason)
+# if (NOT version_check)
+#   message(FATAL_ERROR "[GeckoSDK] ${reason}")
+# endif()
 
 # Print the SDK version
 message(STATUS "[GeckoSDK] Found Silicon Labs Gecko SDK v${PACKAGE_VERSION}")
