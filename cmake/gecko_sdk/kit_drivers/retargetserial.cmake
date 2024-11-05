@@ -7,10 +7,9 @@ if(NOT TARGET gecko_sdk_kit_drivers_retargetserial)
   target_sources(
     gecko_sdk_kit_drivers_retargetserial
     PRIVATE
-      "${GECKO_SDK_PATH}/hardware/kit/common/drivers/retargetio.c"
       "${GECKO_SDK_PATH}/hardware/kit/common/drivers/retargetserial.c"
   )
 
   # Dependencies
-  target_link_libraries(gecko_sdk_kit_drivers_retargetserial gecko_sdk_bsp)
+  target_link_libraries(gecko_sdk_kit_drivers_retargetserial gecko_sdk_kit_drivers_retargetio)
 endif()
