@@ -81,3 +81,5 @@ include(cmake/gecko_sdk/kit_drivers/retargetio.cmake)
 include(cmake/gecko_sdk/kit_drivers/retargetserial.cmake)
 include(cmake/gecko_sdk/kit_drivers/retargetswo.cmake)
 include(cmake/gecko_sdk/rail_lib.cmake)
+
+add_library(GeckoSDK::rail_lib ALIAS gecko_sdk_rail_lib)
