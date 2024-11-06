@@ -1,6 +1,6 @@
 # CMake target for Gecko EMLIB
 if(NOT TARGET GeckoSDK_emlib)
-  add_library(GeckoSDK_emlib STATIC)
+  add_library(GeckoSDK_emlib OBJECT)
   add_library(GeckoSDK::emlib ALIAS GeckoSDK_emlib)
 
   # Common include paths
