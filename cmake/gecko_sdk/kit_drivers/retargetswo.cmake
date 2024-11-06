@@ -1,6 +1,6 @@
 # CMake target for Gecko RetargetIO Kit Driver
 if(NOT TARGET GeckoSDK_kit_drivers_retargetswo)
-  add_library(GeckoSDK_kit_drivers_retargetswo OBJECT)
+  add_library(GeckoSDK_kit_drivers_retargetswo OBJECT EXCLUDE_FROM_ALL)
   add_library(GeckoSDK::kit_drivers::retargetswo ALIAS GeckoSDK_kit_drivers_retargetswo)
 
   # Sources

@@ -1,6 +1,6 @@
 # CMake target for Gecko GPIOINT driver
 if(NOT TARGET GeckoSDK_emdrv_gpioint)
-  add_library(GeckoSDK_emdrv_gpioint OBJECT)
+  add_library(GeckoSDK_emdrv_gpioint OBJECT EXCLUDE_FROM_ALL)
   add_library(GeckoSDK::emdrv::gpioint ALIAS GeckoSDK_emdrv_gpioint)
 
   # Include paths

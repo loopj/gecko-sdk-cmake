@@ -15,7 +15,7 @@ if(NOT TARGET GeckoSDK_bsp)
   endif()
 
   # Define the target
-  add_library(GeckoSDK_bsp OBJECT)
+  add_library(GeckoSDK_bsp OBJECT EXCLUDE_FROM_ALL)
   add_library(GeckoSDK::bsp ALIAS GeckoSDK_bsp)
 
   # Include paths
