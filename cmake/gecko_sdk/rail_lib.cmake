@@ -1,5 +1,5 @@
 # CMake target for the Gecko RAIL library
-if(NOT TARGET gecko_sdk_rail_lib)
+if(NOT TARGET GeckoSDK_rail_lib)
   # Determine the RAIL library name and chip
   if(GECKO_CPU_FAMILY_SHORT STREQUAL "EFR32FG1")
     set(RAIL_LIB_NAME "efr32xg1")
@@ -19,15 +19,15 @@ if(NOT TARGET gecko_sdk_rail_lib)
   endif()
 
   # Expose the RAIL library name we are using
-  set(GECKO_SDK_RAIL_LIB_NAME ${RAIL_LIB_NAME} PARENT_SCOPE)
+  set(GECKO_SDK_RAIL_LIB_NAME ${RAIL_LIB_NAME} CACHE INTERNAL "RAIL library name")
 
   # Define the target
-  add_library(gecko_sdk_rail_lib STATIC IMPORTED GLOBAL)
-  add_library(GeckoSDK::rail_lib ALIAS gecko_sdk_rail_lib)
+  add_library(GeckoSDK_rail_lib STATIC IMPORTED GLOBAL)
+  add_library(GeckoSDK::rail_lib ALIAS GeckoSDK_rail_lib)
 
   # Include paths
   target_include_directories(
-    gecko_sdk_rail_lib
+    GeckoSDK_rail_lib
     INTERFACE
       "${GECKO_SDK_PATH}/platform/radio/rail_lib/common"
       "${GECKO_SDK_PATH}/platform/radio/rail_lib/protocol/ble"
@@ -40,14 +40,14 @@ if(NOT TARGET gecko_sdk_rail_lib)
 
   # Imported library location
   set_target_properties(
-    gecko_sdk_rail_lib
+    GeckoSDK_rail_lib
     PROPERTIES
       IMPORTED_LOCATION
         "${GECKO_SDK_PATH}/platform/radio/rail_lib/autogen/librail_release/librail_${RAIL_LIB_NAME}_gcc_release.a"
   )
 
   # Dependencies
-  target_link_libraries(gecko_sdk_rail_lib INTERFACE gecko_sdk_emlib)
+  target_link_libraries(GeckoSDK_rail_lib INTERFACE GeckoSDK_emlib)
 
   # Function to generate the RAIL library configuration
   function(set_rail_config_paths radioconf_file output_path)

@@ -1,15 +1,15 @@
 # CMake target for Gecko RetargetIO Kit Driver
-if(NOT TARGET gecko_sdk_kit_drivers_retargetio)
-  add_library(gecko_sdk_kit_drivers_retargetio OBJECT EXCLUDE_FROM_ALL)
-  add_library(GeckoSDK::kit_drivers::retargetio ALIAS gecko_sdk_kit_drivers_retargetio)
+if(NOT TARGET GeckoSDK_kit_drivers_retargetio)
+  add_library(GeckoSDK_kit_drivers_retargetio OBJECT)
+  add_library(GeckoSDK::kit_drivers::retargetio ALIAS GeckoSDK_kit_drivers_retargetio)
 
   # Sources
   target_sources(
-    gecko_sdk_kit_drivers_retargetio
+    GeckoSDK_kit_drivers_retargetio
     PRIVATE
       "${GECKO_SDK_PATH}/hardware/kit/common/drivers/retargetio.c"
   )
 
   # Dependencies
-  target_link_libraries(gecko_sdk_kit_drivers_retargetio gecko_sdk_bsp)
+  target_link_libraries(GeckoSDK_kit_drivers_retargetio GeckoSDK_bsp)
 endif()

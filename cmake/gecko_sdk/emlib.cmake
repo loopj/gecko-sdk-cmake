@@ -1,11 +1,11 @@
 # CMake target for Gecko EMLIB
-if(NOT TARGET gecko_sdk_emlib)
-  add_library(gecko_sdk_emlib OBJECT EXCLUDE_FROM_ALL)
-  add_library(GeckoSDK::emlib ALIAS gecko_sdk_emlib)
+if(NOT TARGET GeckoSDK_emlib)
+  add_library(GeckoSDK_emlib STATIC)
+  add_library(GeckoSDK::emlib ALIAS GeckoSDK_emlib)
 
   # Common include paths
   target_include_directories(
-    gecko_sdk_emlib
+    GeckoSDK_emlib
     PUBLIC
       "${GECKO_SDK_PATH}/platform/common/inc"
       "${GECKO_SDK_PATH}/platform/common/config"
@@ -16,7 +16,7 @@ if(NOT TARGET gecko_sdk_emlib)
 
   # Common sources
   target_sources(
-    gecko_sdk_emlib
+    GeckoSDK_emlib
     PRIVATE
       "${GECKO_SDK_PATH}/platform/common/src/sl_assert.c"
       "${GECKO_SDK_PATH}/platform/common/src/sl_string.c"
@@ -25,29 +25,29 @@ if(NOT TARGET gecko_sdk_emlib)
   )
 
   # CMSIS include paths
-  target_include_directories(gecko_sdk_emlib PUBLIC "${GECKO_SDK_PATH}/platform/CMSIS/Core/Include")
+  target_include_directories(GeckoSDK_emlib PUBLIC "${GECKO_SDK_PATH}/platform/CMSIS/Core/Include")
 
   # Device include paths
   target_include_directories(
-    gecko_sdk_emlib
+    GeckoSDK_emlib
     PUBLIC "${GECKO_SDK_PATH}/platform/Device/SiliconLabs/${GECKO_CPU_FAMILY}/Include"
   )
 
   # Device sources
   target_sources(
-    gecko_sdk_emlib
+    GeckoSDK_emlib
     PRIVATE
       "${GECKO_SDK_PATH}/platform/Device/SiliconLabs/${GECKO_CPU_FAMILY}/Source/startup_${GECKO_CPU_FAMILY_L}.c"
       "${GECKO_SDK_PATH}/platform/Device/SiliconLabs/${GECKO_CPU_FAMILY}/Source/system_${GECKO_CPU_FAMILY_L}.c"
   )
 
   # Device compile definitions
-  target_compile_definitions(gecko_sdk_emlib PUBLIC "${GECKO_DEVICE}=1")
+  target_compile_definitions(GeckoSDK_emlib PUBLIC "${GECKO_DEVICE}=1")
 
   # EMLIB include paths
-  target_include_directories(gecko_sdk_emlib PUBLIC "${GECKO_SDK_PATH}/platform/emlib/inc")
+  target_include_directories(GeckoSDK_emlib PUBLIC "${GECKO_SDK_PATH}/platform/emlib/inc")
 
   # EMLIB sources (using a wildcard to avoid listing all files)
   file(GLOB EMLIB_SOURCES "${GECKO_SDK_PATH}/platform/emlib/src/*.c")
-  target_sources(gecko_sdk_emlib PRIVATE ${EMLIB_SOURCES})
+  target_sources(GeckoSDK_emlib PRIVATE ${EMLIB_SOURCES})
 endif()
