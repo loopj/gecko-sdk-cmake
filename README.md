@@ -4,10 +4,6 @@ This package provides CMake library targets for parts of the Silicon Labs Gecko 
 
 Additionally, the package includes toolchain files for ARM Cortex-M4 (Gecko Series 1 devices) and ARM Cortex-M33 (Gecko Series 2 devices) devices.
 
-## Installation
-
-Clone this repo somewhere, then make sure the path to the `cmake` directory is in your `CMAKE_MODULE_PATH`.
-
 ## Usage
 
 ```cmake
@@ -15,11 +11,18 @@ Clone this repo somewhere, then make sure the path to the `cmake` directory is i
 cmake_minimum_required(VERSION 3.21)
 project(hello-world LANGUAGES C)
 
-# Add the path to the 'FindGeckoSDK.cmake' if it's not in a common module path
-list(APPEND CMAKE_MODULE_PATH "path/to/gecko-sdk-cmake/cmake")
+# Include FetchContent module
+include(FetchContent)
 
-# Find the external library
-find_package(GeckoSDK REQUIRED)
+# Declare GeckoSDK as an external dependency
+FetchContent_Declare(
+  GeckoSDK
+  GIT_REPOSITORY https://github.com/loopj/gecko-sdk-cmake.git
+  GIT_TAG main
+)
+
+# Download and make the GeckoSDK content available
+FetchContent_MakeAvailable(GeckoSDK)
 
 # Define your target and link against the Gecko SDK libraries
 add_executable(hello_world main.c)
@@ -56,3 +59,52 @@ The following library targets are currently available to link against:
 - `GeckoSDK::kit_drivers::retargetserial` - The [Retarget Serial](https://docs.silabs.com/gecko-platform/4.4.5/platform-driver/retargetserial) kit driver.
 - `GeckoSDK::kit_drivers::retargetswo` - The [Retarget SWO](https://docs.silabs.com/gecko-platform/4.4.5/platform-driver/retargetswo) kit driver.
 - `GeckoSDK::bootloader::interface` - The [Bootloader Application Interface](https://docs.silabs.com/mcu-bootloader/latest/gecko-bootloader-api/interface).
+
+## Toolchain Files
+
+## Utility Functions
+
+This package also provides some utility functions to make it easier to work with the Gecko SDK.
+
+### Artifact Generation
+
+To use the artifact generation functions, you will need to include the `generate_artifacts.cmake` file in your CMakeLists.txt file.
+
+```cmake
+include(${geckosdk_SOURCE_DIR}/cmake/utils/generate_artifacts.cmake)
+```
+
+The following functions will then be available:
+
+```cmake
+# Generate a bin file from the target
+generate_bin(my_target)
+
+# Generate a hex file from the target
+generate_hex(my_target)
+
+# Generate an s37 file from the target
+generate_s37(my_target)
+
+# Generate a gbl (Gecko Bootloader) file from the target
+# This requires SIMPLICITY_COMMANDER_PATH to be set
+generate_gbl(my_target)
+```
+
+### Flashing with OpenOCD
+
+To use the OpenOCD flashing functions, you will need to include the `openocd.cmake` file in your CMakeLists.txt file.
+
+This assumes you are using an OpenOCD version that has been patched with EFM32 Series 2 support.
+
+```cmake
+include(${geckosdk_SOURCE_DIR}/cmake/utils/openocd.cmake)
+```
+
+The following functions will then be available:
+
+```cmake
+add_openocd_flash_target(my_target)
+```
+
+Which will create a target called `my_target_flash_openocd` that will flash the target using OpenOCD.

@@ -16,6 +16,7 @@
 if(NOT DEFINED GECKO_SDK_PATH)
   if(DEFINED ENV{GECKO_SDK_PATH})
     set(GECKO_SDK_PATH $ENV{GECKO_SDK_PATH})
+    set(GECKO_SDK_PATH $ENV{GECKO_SDK_PATH} PARENT_SCOPE)
   else()
     message(FATAL_ERROR "[GeckoSDK] GECKO_SDK_PATH is not set.")
   endif()
@@ -54,14 +55,6 @@ endif()
 
 # Set the lowercase version of the GECKO_CPU_FAMILY (used by the system/startup files)
 string(TOLOWER ${GECKO_CPU_FAMILY} GECKO_CPU_FAMILY_L)
-
-# Set the part number as a compile definition
-add_compile_definitions("${GECKO_DEVICE}=1")
-
-# Make the toolchain directory available to consumers
-get_filename_component(GeckoSDK_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
-set(GeckoSDK_TOOLCHAIN_DIR "${GeckoSDK_CMAKE_DIR}/toolchains")
-set(GeckoSDK_TOOLCHAIN_DIR_HINT "${GeckoSDK_TOOLCHAIN_DIR}" CACHE PATH "Path to MyPackage toolchain files")
 
 # Include the SDK components
 include(cmake/gecko_sdk/bootloader/interface.cmake)

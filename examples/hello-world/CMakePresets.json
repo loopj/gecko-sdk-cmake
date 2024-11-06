@@ -9,8 +9,7 @@
       "cacheVariables": {
         "GECKO_DEVICE": "EFR32BG22C224F512GM32",
         "GECKO_CPU_FAMILY": "EFR32BG22",
-        "GECKO_BOARD_CONFIG": "${sourceDir}/common/bsp/RF-BM-BG22C3",
-        "LINKER_SCRIPT": "${sourceDir}/efr32xg22.ld"
+        "GECKO_BOARD_CONFIG": "${sourceDir}/common/bsp/RF-BM-BG22C3"
       }
     }
   ],

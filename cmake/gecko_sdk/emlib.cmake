@@ -41,6 +41,9 @@ if(NOT TARGET gecko_sdk_emlib)
       "${GECKO_SDK_PATH}/platform/Device/SiliconLabs/${GECKO_CPU_FAMILY}/Source/system_${GECKO_CPU_FAMILY_L}.c"
   )
 
+  # Device compile definitions
+  target_compile_definitions(gecko_sdk_emlib PUBLIC "${GECKO_DEVICE}=1")
+
   # EMLIB include paths
   target_include_directories(gecko_sdk_emlib PUBLIC "${GECKO_SDK_PATH}/platform/emlib/inc")
 

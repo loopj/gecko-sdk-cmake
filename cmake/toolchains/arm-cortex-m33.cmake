@@ -14,7 +14,7 @@ set(CMAKE_ASM_COMPILER arm-none-eabi-g++)
 set(CMAKE_C_FLAGS "-mcpu=cortex-m33 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mcmse -Wall -Werror -ffunction-sections -fdata-sections -fomit-frame-pointer -fno-builtin")
 set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS}")
 set(CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS} -x assembler-with-cpp")
-set(CMAKE_EXE_LINKER_FLAGS "-mcpu=cortex-m33 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mcmse -Wl,--gc-sections,--print-memory-usage,--no-warn-rwx-segments -specs=nano.specs -T ${LINKER_SCRIPT}")
+set(CMAKE_EXE_LINKER_FLAGS "-mcpu=cortex-m33 -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mcmse -Wl,--gc-sections,--print-memory-usage,--no-warn-rwx-segments -specs=nano.specs")
 
 # Set flags based on the build type
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")

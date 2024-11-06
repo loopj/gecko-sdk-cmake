@@ -18,6 +18,9 @@ if(NOT TARGET gecko_sdk_rail_lib)
     return()
   endif()
 
+  # Expose the RAIL library name we are using
+  set(GECKO_SDK_RAIL_LIB_NAME ${RAIL_LIB_NAME} PARENT_SCOPE)
+
   # Define the target
   add_library(gecko_sdk_rail_lib STATIC IMPORTED GLOBAL)
   add_library(GeckoSDK::rail_lib ALIAS gecko_sdk_rail_lib)
