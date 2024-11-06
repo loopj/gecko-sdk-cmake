@@ -8,6 +8,7 @@
 #define BSP_GPIO_PB0_PIN 0
 
 int main(void) {
+  // Chip errata
   CHIP_Init();
 
   // Enable GPIO clock. Note this step is not required for EFR32xG21 devices

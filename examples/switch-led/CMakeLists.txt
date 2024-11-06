@@ -7,11 +7,18 @@ project(hello-world LANGUAGES C)
 # Include FetchContent module
 include(FetchContent)
 
-# Declare GeckoSDK as an external dependency
+# Declare GeckoSDK as an external dependency from the local filesystem
 FetchContent_Declare(
   GeckoSDK
   SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/../.."
 )
+
+# Declare GeckoSDK as a dependency from GitHub
+# FetchContent_Declare(
+#   GeckoSDK
+#   GIT_REPOSITORY https://github.com/loopj/gecko-sdk-cmake.git
+#   GIT_TAG        main
+# )
 
 # Download and make the GeckoSDK content available
 FetchContent_MakeAvailable(GeckoSDK)
