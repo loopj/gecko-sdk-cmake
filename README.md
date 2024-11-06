@@ -60,6 +60,8 @@ The following library targets are currently available to link against:
 - `GeckoSDK::kit_drivers::retargetswo` - The [Retarget SWO](https://docs.silabs.com/gecko-platform/4.4.5/platform-driver/retargetswo) kit driver.
 - `GeckoSDK::bootloader::interface` - The [Bootloader Application Interface](https://docs.silabs.com/mcu-bootloader/latest/gecko-bootloader-api/interface).
 
+Pull requests are welcome to add more library targets!
+
 ## Toolchain Files
 
 ## Utility Functions
