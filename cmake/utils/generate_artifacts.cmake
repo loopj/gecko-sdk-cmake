@@ -35,7 +35,7 @@ endfunction()
 
 # Create a .gbl file for use with the Gecko Bootloader
 function(GeckoSDK_generate_gbl TARGET)
-  if(NOT DEFINED SIMPLICITY_COMMANDER_PATH)
+  if(NOT SIMPLICITY_COMMANDER_PATH)
     message(WARNING "SIMPLICITY_COMMANDER_PATH must be defined to generate .gbl files")
     return()
   endif()

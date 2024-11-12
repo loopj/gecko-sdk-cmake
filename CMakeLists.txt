@@ -19,6 +19,7 @@ set(GECKO_CPU_FAMILY "" CACHE STRING "Gecko SoC CPU family, e.g. EFR32BG22")
 # Optional settings:
 set(GECKO_BOARD "" CACHE STRING "The development board name, e.g. BRD4161A")
 set(GECKO_BOARD_CONFIG "" CACHE PATH "Path to custom board configuration files")
+set(SIMPLICITY_COMMANDER_PATH "" CACHE PATH "Path to Simplicity Commander")
 
 # Make sure GECKO_SDK_PATH is defined
 if(NOT GECKO_SDK_PATH)
@@ -26,6 +27,13 @@ if(NOT GECKO_SDK_PATH)
     set(GECKO_SDK_PATH $ENV{GECKO_SDK_PATH} CACHE PATH "Path to the Silicon Labs Gecko SDK" FORCE)
   else()
     message(FATAL_ERROR "[GeckoSDK] GECKO_SDK_PATH is not set.")
+  endif()
+endif()
+
+# Set the Simplicity Commander path if it is not defined, but available in the environment
+if(NOT SIMPLICITY_COMMANDER_PATH)
+  if(DEFINED ENV{SIMPLICITY_COMMANDER_PATH})
+    set(SIMPLICITY_COMMANDER_PATH $ENV{SIMPLICITY_COMMANDER_PATH} CACHE PATH "Path to Simplicity Commander" FORCE)
   endif()
 endif()
 
