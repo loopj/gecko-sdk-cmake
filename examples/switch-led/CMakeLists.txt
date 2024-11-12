@@ -31,3 +31,6 @@ target_link_libraries(hello_world PRIVATE GeckoSDK::emlib)
 
 # Set the linker script
 target_link_options(hello_world PRIVATE "-T${CMAKE_CURRENT_LIST_DIR}/efr32xg22.ld")
+
+# Generate .hex artifact after building the target
+GeckoSDK_generate_hex(hello_world)

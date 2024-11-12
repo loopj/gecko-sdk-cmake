@@ -64,49 +64,37 @@ Pull requests are welcome to add more library targets!
 
 ## Toolchain Files
 
-## Utility Functions
+Toolchain files are provided for ARM Cortex-M4 and ARM Cortex-M33 devices. Copy the appropriate toolchain file from `cmake/toolchains` to your project directory and set the `CMAKE_TOOLCHAIN_FILE` variable to point to it.
 
-This package also provides some utility functions to make it easier to work with the Gecko SDK.
-
-### Artifact Generation
-
-To use the artifact generation functions, you will need to include the `generate_artifacts.cmake` file in your CMakeLists.txt file.
-
-```cmake
-include(${geckosdk_SOURCE_DIR}/cmake/utils/generate_artifacts.cmake)
+```bash
+cmake -DCMAKE_TOOLCHAIN_FILE=arm-cortex-m33.cmake ...
 ```
 
-The following functions will then be available:
+If you are using a `CMakePresets.json` file, you can set the toolchain file in the `configurePreset` section:
+
+```json
+{
+  "configurePreset": {
+    "toolchainFile": "arm-cortex-m33.cmake"
+  }
+}
+```
+
+## Artifact Generation
+
+The following artifact generation functions are made available:
 
 ```cmake
 # Generate a bin file from the target
-generate_bin(my_target)
+GeckoSDK_generate_bin(my_target)
 
 # Generate a hex file from the target
-generate_hex(my_target)
+GeckoSDK_generate_hex(my_target)
 
 # Generate an s37 file from the target
-generate_s37(my_target)
+GeckoSDK_generate_s37(my_target)
 
 # Generate a gbl (Gecko Bootloader) file from the target
 # This requires SIMPLICITY_COMMANDER_PATH to be set
-generate_gbl(my_target)
+GeckoSDK_generate_gbl(my_target)
 ```
-
-### Flashing with OpenOCD
-
-To use the OpenOCD flashing functions, you will need to include the `openocd.cmake` file in your CMakeLists.txt file.
-
-This assumes you are using an OpenOCD version that has been patched with EFM32 Series 2 support.
-
-```cmake
-include(${geckosdk_SOURCE_DIR}/cmake/utils/openocd.cmake)
-```
-
-The following functions will then be available:
-
-```cmake
-add_openocd_flash_target(my_target)
-```
-
-Which will create a target called `my_target_flash_openocd` that will flash the target using OpenOCD.
