@@ -77,14 +77,31 @@ endif()
 # Set the lowercase version of the GECKO_CPU_FAMILY (used by the system/startup files)
 string(TOLOWER ${GECKO_CPU_FAMILY} GECKO_CPU_FAMILY_L)
 
+# Include the board-specific configuration files, if available
+if(GECKO_BOARD)
+  # Use pre-defined board configs from the SDK
+  set(GECKO_BOARD_CONFIG_PATH "${GECKO_SDK_PATH}/hardware/kit/${GECKO_CPU_FAMILY_SHORT}_${GECKO_BOARD}/config")
+  message(STATUS "[GeckoSDK] Using pre-defined BSP configuration for ${GECKO_CPU_FAMILY_SHORT}_${GECKO_BOARD}")
+elseif(GECKO_BOARD_CONFIG)
+  # Use custom board configs
+  set(GECKO_BOARD_CONFIG_PATH "${GECKO_BOARD_CONFIG}")
+  message(STATUS "[GeckoSDK] Using custom BSP configuration files at ${GECKO_BOARD_CONFIG}")
+else()
+  message(WARNING "[GeckoSDK] Neither GECKO_BOARD or GECKO_BOARD_CONFIG are set, not generating BSP or RetargetIO driver targets")
+endif()
+
 # Include the SDK components
 include(cmake/gecko_sdk/bootloader/interface.cmake)
-include(cmake/gecko_sdk/bsp.cmake)
 include(cmake/gecko_sdk/emdrv/gpioint.cmake)
 include(cmake/gecko_sdk/emlib.cmake)
-include(cmake/gecko_sdk/kit_drivers/retargetserial.cmake)
-include(cmake/gecko_sdk/kit_drivers/retargetswo.cmake)
 include(cmake/gecko_sdk/rail_lib.cmake)
+
+# Include the BSP and kit drivers, if a board is defined
+if(GECKO_BOARD_CONFIG_PATH)
+  include(cmake/gecko_sdk/bsp.cmake)
+  include(cmake/gecko_sdk/kit_drivers/retargetserial.cmake)
+  include(cmake/gecko_sdk/kit_drivers/retargetswo.cmake)
+endif()
 
 # Include the artifact generation functions
 include(cmake/utils/generate_artifacts.cmake)

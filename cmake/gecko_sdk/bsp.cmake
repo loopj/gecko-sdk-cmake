@@ -1,19 +1,5 @@
 # CMake target for Gecko Board Support Package (BSP)
 if(NOT TARGET GeckoSDK_bsp)
-  # Include the board-specific configuration files, if available
-  if(GECKO_BOARD)
-    # Use pre-defined board configs from the SDK
-    set(GECKO_BOARD_CONFIG_PATH "${GECKO_SDK_PATH}/hardware/kit/${GECKO_CPU_FAMILY_SHORT}_${GECKO_BOARD}/config")
-    message(STATUS "[GeckoSDK] Using pre-defined BSP configuration for ${GECKO_CPU_FAMILY_SHORT}_${GECKO_BOARD}")
-  elseif(GECKO_BOARD_CONFIG)
-    # Use custom board configs
-    set(GECKO_BOARD_CONFIG_PATH "${GECKO_BOARD_CONFIG}")
-    message(STATUS "[GeckoSDK] Using custom BSP configuration files at ${GECKO_BOARD_CONFIG}")
-  else()
-    message(WARNING "[GeckoSDK] No BSP configuration files included, not generating GeckoSDK::bsp target")
-    return()
-  endif()
-
   # Define the target
   add_library(GeckoSDK_bsp OBJECT EXCLUDE_FROM_ALL)
   add_library(GeckoSDK::bsp ALIAS GeckoSDK_bsp)
