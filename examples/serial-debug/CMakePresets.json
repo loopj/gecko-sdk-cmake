@@ -1,0 +1,23 @@
+{
+    "version": 6,
+    "configurePresets": [
+        {
+            "name": "Configure",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build",
+            "toolchainFile": "${sourceDir}/arm-cortex-m33.cmake",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "GECKO_DEVICE": "EFR32MG22C224F512IM40",
+                "GECKO_CPU_FAMILY": "EFR32MG22",
+                "GECKO_BOARD": "BRD4182A"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "Build",
+            "configurePreset": "Configure"
+        }
+    ]
+}
