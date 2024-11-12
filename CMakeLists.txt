@@ -87,7 +87,7 @@ elseif(GECKO_BOARD_CONFIG)
   set(GECKO_BOARD_CONFIG_PATH "${GECKO_BOARD_CONFIG}")
   message(STATUS "[GeckoSDK] Using custom BSP configuration files at ${GECKO_BOARD_CONFIG}")
 else()
-  message(WARNING "[GeckoSDK] Neither GECKO_BOARD or GECKO_BOARD_CONFIG are set, not generating BSP or RetargetIO driver targets")
+  message(NOTICE "[GeckoSDK] Neither GECKO_BOARD or GECKO_BOARD_CONFIG are set, BSP and RetargetIO driver targets will not be created")
 endif()
 
 # Include the SDK components
