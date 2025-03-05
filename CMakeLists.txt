@@ -105,3 +105,6 @@ endif()
 
 # Include the artifact generation functions
 include(cmake/utils/generate_artifacts.cmake)
+
+# Set the Gecko SDK found flag
+set(GeckoSDK_FOUND TRUE PARENT_SCOPE)
