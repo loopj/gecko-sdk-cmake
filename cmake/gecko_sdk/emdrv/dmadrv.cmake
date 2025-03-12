@@ -6,9 +6,9 @@ if(NOT TARGET GeckoSDK_emdrv_dmadrv)
   # Include paths
   target_include_directories(
     GeckoSDK_emdrv_dmadrv
-    PUBLIC "${GECKO_SDK_PATH}/platform/emdrv/dmadrv/inc"
-    PRIVATE
+    PUBLIC
       "${GECKO_SDK_PATH}/platform/emdrv/common/inc"
+      "${GECKO_SDK_PATH}/platform/emdrv/dmadrv/inc"
       "${GECKO_SDK_PATH}/platform/emdrv/dmadrv/config"
   )
 
