@@ -93,6 +93,7 @@ endif()
 # Include the SDK components
 include(cmake/gecko_sdk/bootloader/interface.cmake)
 include(cmake/gecko_sdk/emdrv/gpioint.cmake)
+include(cmake/gecko_sdk/emdrv/dmadrv.cmake)
 include(cmake/gecko_sdk/emlib.cmake)
 include(cmake/gecko_sdk/rail_lib.cmake)
 
